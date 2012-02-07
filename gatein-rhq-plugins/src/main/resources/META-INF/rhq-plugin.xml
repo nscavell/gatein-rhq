@@ -26,7 +26,7 @@
         displayName="GateIn Plugin"
         description="Supports monitoring of GateIn 3.1.x and EPP 5.1.x"
         version="2"
-        package="org.gatein.rhq.jonplugin"
+        package="org.gatein.rhq.plugin"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="urn:xmlns:rhq-plugin"
         xmlns:c="urn:xmlns:rhq-configuration"
@@ -35,8 +35,8 @@
    <depends plugin="JMX"/>
    <depends plugin="JBossAS5" useClasses="true"/>
 
-   <service name="GateIn Portal" discovery="org.gatein.rhq.jonplugin.PortalDiscovery"
-            class="org.gatein.rhq.jonplugin.PortalComponent" description="Monitors Portals">
+   <service name="GateIn Portal" discovery="org.gatein.rhq.plugin.PortalDiscovery"
+            class="org.gatein.rhq.plugin.PortalComponent" description="Monitors Portals">
 
       <runs-inside>
          <parent-resource-type name="JBossAS Server" plugin="JBossAS5"/>
@@ -56,8 +56,8 @@
       <metric property="throughput" displayName="Number of requests per second for this portal" units="none"
               displayType="summary" defaultOn="true" measurementType="dynamic"/>
 
-      <service name="GateIn Portlets" class="org.gatein.rhq.jonplugin.PortletComponent"
-               discovery="org.gatein.rhq.jonplugin.PortletDiscovery"
+      <service name="GateIn Portlets" class="org.gatein.rhq.plugin.PortletComponent"
+               discovery="org.gatein.rhq.plugin.PortletDiscovery"
                description="Monitors Portlets deployed in GateIn">
          <plugin-configuration>
             <c:simple-property name="objectName" readOnly="true"
