@@ -21,19 +21,13 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package org.gatein.management.spi.stats;
+package org.gatein.rhq.jmx;
 
 /**
  * @author <a href="mailto:chris.laprun@jboss.com">Chris Laprun</a>
  * @version $Revision$
  */
-public interface TimedStatisticService
+public interface GateInJMXResource
 {
-   String getServiceName();
-
-   double getAverageExecutionTime();
-
-   double getMinExecutionTime();
-
-   double getMaxExecutionTime();
+   String getAttributeName();
 }

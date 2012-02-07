@@ -21,10 +21,10 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package org.gatein.management.jonplugin;
+package org.gatein.rhq.jonplugin;
 
-import org.gatein.management.Portal;
-import org.gatein.management.jmx.GateInJMXResourceDiscovery;
+import org.gatein.rhq.Portal;
+import org.gatein.rhq.jmx.GateInJMXResourceDiscovery;
 import org.rhq.core.pluginapi.inventory.DiscoveredResourceDetails;
 import org.rhq.core.pluginapi.inventory.ResourceDiscoveryContext;
 import org.rhq.plugins.jmx.JMXComponent;

@@ -21,13 +21,19 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package org.gatein.management.spi.stats;
+package org.gatein.rhq.spi.stats;
 
 /**
  * @author <a href="mailto:chris.laprun@jboss.com">Chris Laprun</a>
  * @version $Revision$
  */
-public interface PortalStatisticService extends TimedStatisticService
+public interface TimedStatisticService
 {
-   double getThroughput();
+   String getServiceName();
+
+   double getAverageExecutionTime();
+
+   double getMinExecutionTime();
+
+   double getMaxExecutionTime();
 }

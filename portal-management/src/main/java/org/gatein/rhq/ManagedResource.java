@@ -21,10 +21,10 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package org.gatein.management;
+package org.gatein.rhq;
 
 import org.gatein.common.util.ParameterValidation;
-import org.gatein.management.spi.stats.TimedStatisticService;
+import org.gatein.rhq.spi.stats.TimedStatisticService;
 
 /**
  * @author <a href="mailto:chris.laprun@jboss.com">Chris Laprun</a>

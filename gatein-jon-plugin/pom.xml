@@ -121,7 +121,7 @@
                      <artifactItems>
 
                         <artifactItem>
-                           <groupId>org.gatein.management</groupId>
+                           <groupId>org.gatein.rhq</groupId>
                            <artifactId>portal-management</artifactId>
                            <version>${project.version}</version>
                         </artifactItem>

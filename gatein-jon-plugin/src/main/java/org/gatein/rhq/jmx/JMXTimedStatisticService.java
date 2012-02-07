@@ -21,10 +21,10 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package org.gatein.management.jmx;
+package org.gatein.rhq.jmx;
 
 import org.gatein.common.util.ParameterValidation;
-import org.gatein.management.spi.stats.TimedStatisticService;
+import org.gatein.rhq.spi.stats.TimedStatisticService;
 import org.mc4j.ems.connection.bean.EmsBean;
 import org.mc4j.ems.connection.bean.operation.EmsOperation;
 

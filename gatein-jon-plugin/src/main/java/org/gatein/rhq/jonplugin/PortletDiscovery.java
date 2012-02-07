@@ -21,29 +21,38 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package org.gatein.management.jmx;
+package org.gatein.rhq.jonplugin;
 
-import org.gatein.management.spi.stats.PortletStatisticService;
-import org.mc4j.ems.connection.bean.EmsBean;
-import org.mc4j.ems.connection.bean.operation.EmsOperation;
+import org.gatein.rhq.ResourceKey;
+import org.gatein.rhq.jmx.GateInJMXResourceDiscovery;
+import org.rhq.core.pluginapi.inventory.DiscoveredResourceDetails;
+import org.rhq.core.pluginapi.inventory.ResourceDiscoveryContext;
+import org.rhq.plugins.jmx.JMXComponent;
 
 /**
  * @author <a href="mailto:chris.laprun@jboss.com">Chris Laprun</a>
  * @version $Revision$
  */
-public class JMXPortletStatisticService extends JMXTimedStatisticService implements PortletStatisticService
+public class PortletDiscovery extends GateInJMXResourceDiscovery
 {
-   private final EmsOperation getExecutionCount;
-
-   public JMXPortletStatisticService(EmsBean statisticJMXBean, String portletId)
+   @Override
+   protected DiscoveredResourceDetails createResourceDetail(ResourceDiscoveryContext<JMXComponent> context, String portalContainerName, String name)
    {
-      super(statisticJMXBean, portletId);
-      getExecutionCount = statisticJMXBean.getOperation("getExecutionCount", (Class[]) null);
+      String parentKey = context.getParentResourceContext().getResourceKey();
+      ResourceKey parent = ResourceKey.parse(parentKey);
+
+      // ideally we would monitor invokers as well
+      ResourceKey invoker = ResourceKey.getKeyForChild(parent, "local");
+      ResourceKey key = ResourceKey.getKeyForChild(invoker, name);
+
+
+      return new DiscoveredResourceDetails(context.getResourceType(), ResourceKey.asString(key),
+         key.getPortletId(), "version", "Monitoring of GateIn portlet '" + name + "' running in " + key.getPortalKey(), null, null);
    }
 
    @Override
-   public long getExecutionCount()
+   public String getAttributeName()
    {
-      return (Long)getExecutionCount.invoke(getServiceName());
+      return "ApplicationList";
    }
 }

@@ -21,12 +21,12 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package org.gatein.management.jmx;
+package org.gatein.rhq.jmx;
 
-import org.gatein.management.ManagedResource;
-import org.gatein.management.Portal;
-import org.gatein.management.ResourceKey;
-import org.gatein.management.spi.stats.TimedStatisticService;
+import org.gatein.rhq.ManagedResource;
+import org.gatein.rhq.Portal;
+import org.gatein.rhq.ResourceKey;
+import org.gatein.rhq.spi.stats.TimedStatisticService;
 import org.mc4j.ems.connection.EmsConnection;
 import org.mc4j.ems.connection.bean.EmsBean;
 import org.rhq.core.domain.configuration.PropertySimple;

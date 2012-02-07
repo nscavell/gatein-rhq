@@ -21,9 +21,9 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package org.gatein.management;
+package org.gatein.rhq;
 
-import org.gatein.management.spi.stats.PortalStatisticService;
+import org.gatein.rhq.spi.stats.PortalStatisticService;
 
 /**
  * @author Chris Laprun
