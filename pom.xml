@@ -100,6 +100,6 @@
    </dependencyManagement>
 
    <modules>
-      <module>gatein-rhq-plugins</module>
+      <module>plugins</module>
    </modules>
 </project>
