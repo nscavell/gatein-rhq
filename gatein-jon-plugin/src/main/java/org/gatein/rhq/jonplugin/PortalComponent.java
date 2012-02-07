@@ -37,45 +37,6 @@ import org.rhq.core.pluginapi.operation.OperationResult;
 
 public class PortalComponent extends GateInJMXResourceComponent<Portal, PortalStatisticService>
 {
-   /*public void start(ResourceContext<JMXComponent> context)
-   {
-      String resourceKey = context.getResourceKey();
-      try
-      {
-         EmsConnection connection = context.getParentResourceComponent().getEmsConnection();
-
-         ResourceKey key = ResourceKey.parse(resourceKey);
-
-         Portal.PortalKey portalKey = key.getPortalKey();
-         String currentPortalName = portalKey.getPortalName();
-
-         PropertySimple objectName = (PropertySimple)context.getPluginConfiguration().get("objectName");
-
-         // configuration variables are not interpolated when retrieved from component for some reason (they are from discovery)
-         // also, exo registered the bean with the container name in quotes so need to add them so that the bean can be found...
-         String beanName = objectName.getStringValue().replace("%container%", "\"" + portalKey.getPortalContainerName() + "\"");
-         EmsBean portalBean = connection.getBean(beanName);
-
-         String[] portalNames = (String[])portalBean.getAttribute("PortalList").getValue();
-         for (String portalName : portalNames)
-         {
-            if (portalName.equals(currentPortalName))
-            {
-               PortalStatisticService statisticService = new JMXPortalStatisticService(portalBean, portalName);
-               portal = new Portal(Portal.PortalKey.create(portalKey.getPortalContainerName(), currentPortalName), statisticService);
-               break;
-            }
-         }
-
-         availability = AvailabilityType.UP;
-      }
-      catch (Exception e)
-      {
-         log.debug("Couldn't start PortalComponent '" + resourceKey + "'", e);
-         availability = AvailabilityType.DOWN;
-      }
-   }*/
-
    @Override
    protected void initManagedResource(ResourceKey key, EmsBean statisticBean)
    {
