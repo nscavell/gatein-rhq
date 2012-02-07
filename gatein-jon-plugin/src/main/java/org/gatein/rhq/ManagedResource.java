@@ -23,7 +23,6 @@
 
 package org.gatein.rhq;
 
-import org.gatein.common.util.ParameterValidation;
 import org.gatein.rhq.spi.stats.TimedStatisticService;
 
 /**
@@ -37,8 +36,8 @@ public abstract class ManagedResource<T extends ManagedResource, S extends Timed
 
    public ManagedResource(ResourceKey key, S statisticService)
    {
-      ParameterValidation.throwIllegalArgExceptionIfNull(key, "key");
-      ParameterValidation.throwIllegalArgExceptionIfNull(statisticService, "statistic service");
+      if (key == null) throw new IllegalArgumentException("key cannot be null");
+      if (statisticService == null) throw new IllegalArgumentException("statisticService cannot be null");
 
       this.key = key;
       this.statisticService = statisticService;

@@ -23,15 +23,18 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+   <modelVersion>4.0.0</modelVersion>
+
    <parent>
-      <groupId>org.gatein.management</groupId>
-      <artifactId>jonplugin-parent</artifactId>
+      <groupId>org.gatein.rhq</groupId>
+      <artifactId>gatein-rhq-parent</artifactId>
       <version>1.0.0-SNAPSHOT</version>
    </parent>
-   <modelVersion>4.0.0</modelVersion>
-   <artifactId>gatein-jon-plugin</artifactId>
+
+   <artifactId>gatein-rhq-plugins</artifactId>
    <packaging>jar</packaging>
-   <name>GateIn JON Plugin</name>
+   <name>GateIn RHQ - Plugins</name>
 
    <dependencies>
       <dependency>
@@ -50,11 +53,6 @@
       <dependency>
          <groupId>org.slf4j</groupId>
          <artifactId>slf4j-api</artifactId>
-      </dependency>
-      <dependency>
-         <groupId>org.gatein.management</groupId>
-         <artifactId>portal-management</artifactId>
-         <version>${project.version}</version>
       </dependency>
 
       <!-- won't compile otherwise due to reliance of JOPR plugin API on hibernate/JPA annotations -->
@@ -99,43 +97,6 @@
             <version>${rhq.version}</version>
          </plugin>
 
-         <!--
-         If your plugin has third-party jar dependencies that are not already
-         available when deployed in the plugin container, you can package these
-         jars in your plugin. They go in your plugin jar's "lib" directory.
-         Uncomment the maven plugin definition below and define one or more jar
-         files (aka "artifactItem" elements) that you want to include in your
-         plugin jar.
-         -->
-
-         <plugin>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <executions>
-               <execution>
-                  <id>copy-dependencies</id>
-                  <phase>process-resources</phase>
-                  <goals>
-                     <goal>copy</goal>
-                  </goals>
-                  <configuration>
-                     <artifactItems>
-
-                        <artifactItem>
-                           <groupId>org.gatein.rhq</groupId>
-                           <artifactId>portal-management</artifactId>
-                           <version>${project.version}</version>
-                        </artifactItem>
-                        <artifactItem>
-                           <groupId>org.gatein.common</groupId>
-                           <artifactId>common-common</artifactId>
-                           <version>${gatein.common.version}</version>
-                        </artifactItem>
-                     </artifactItems>
-                     <outputDirectory>${project.build.outputDirectory}/lib</outputDirectory>
-                  </configuration>
-               </execution>
-            </executions>
-         </plugin>
       </plugins>
       <finalName>gatein-jon-plugin</finalName>
    </build>

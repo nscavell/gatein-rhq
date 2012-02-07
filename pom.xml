@@ -24,18 +24,26 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
    <modelVersion>4.0.0</modelVersion>
-   <groupId>org.gatein.management</groupId>
-   <artifactId>jonplugin-parent</artifactId>
-   <packaging>pom</packaging>
-   <name>GateIn JON Plugin Module parent</name>
-   <version>1.0.0-SNAPSHOT</version>
-   <url>http://www.gatein.org/</url>
 
    <parent>
       <groupId>org.gatein</groupId>
       <artifactId>gatein-parent</artifactId>
       <version>1.1.0-GA</version>
    </parent>
+
+   <groupId>org.gatein.rhq</groupId>
+   <artifactId>gatein-rhq-parent</artifactId>
+   <version>1.0.0-SNAPSHOT</version>
+   <packaging>pom</packaging>
+
+   <name>GateIn RHQ - Parent Project</name>
+   <description>GateIn Portal RHQ Parent Project</description>
+
+   <scm>
+      <connection>scm:git:git://github.com/gatein/gatein-rhq.git</connection>
+      <developerConnection>scm:git:ssh://git@github.com/gatein/gatein-rhq.git</developerConnection>
+      <url>https://github.com/gatein/gatein-rhq.git</url>
+   </scm>
 
    <properties>
       <org.slf4j.version>1.5.6</org.slf4j.version>
@@ -47,6 +55,8 @@
    <dependencyManagement>
       <!-- The parent pom manages the inter-dependencies of the modules. -->
       <dependencies>
+
+         <!-- Logging -->
          <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -59,6 +69,8 @@
             <version>${org.slf4j.version}</version>
             <scope>provided</scope>
          </dependency>
+
+         <!-- RHQ Dependencies -->
          <dependency>
             <groupId>org.rhq</groupId>
             <artifactId>rhq-core-domain</artifactId>
@@ -77,12 +89,7 @@
             <version>${rhq.version}</version>
          </dependency>
 
-         <dependency>
-            <groupId>org.gatein.common</groupId>
-            <artifactId>common-common</artifactId>
-            <version>${gatein.common.version}</version>
-         </dependency>
-
+         <!-- Testing -->
          <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -93,7 +100,6 @@
    </dependencyManagement>
 
    <modules>
-      <module>portal-management</module>
       <module>gatein-jon-plugin</module>
    </modules>
 </project>

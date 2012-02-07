@@ -23,8 +23,6 @@
 
 package org.gatein.rhq;
 
-import org.gatein.common.util.ParameterValidation;
-
 /**
  * @author <a href="mailto:chris.laprun@jboss.com">Chris Laprun</a>
  * @version $Revision$
@@ -38,11 +36,11 @@ public class ResourceKey implements Comparable<ResourceKey>
 
    ResourceKey(Portal.PortalKey portalKey, String invokerId, String portletId)
    {
-      ParameterValidation.throwIllegalArgExceptionIfNull(portalKey, "PortalKey");
+      if (portalKey == null) throw new IllegalArgumentException("portalKey cannot be null.");
       this.portalKey = portalKey;
 
       // only take portlet id into account if invoker id is not null or empty
-      if (!ParameterValidation.isNullOrEmpty(invokerId))
+      if (invokerId != null && invokerId.trim().length() > 0)
       {
          this.invokerId = invokerId;
          this.portletId = portletId;
@@ -68,8 +66,8 @@ public class ResourceKey implements Comparable<ResourceKey>
 
    public static ResourceKey getKeyForChild(ResourceKey parent, String childId)
    {
-      ParameterValidation.throwIllegalArgExceptionIfNull(parent, "Parent resource");
-      ParameterValidation.throwIllegalArgExceptionIfNullOrEmpty(childId, "child identifier", null);
+      if (parent == null) throw new IllegalArgumentException("parent cannot be null");
+      if (childId == null || childId.trim().length() == 0) throw new IllegalArgumentException("childId cannot be null or empty");
 
       String invokerId = parent.getInvokerId();
       if (invokerId == null)
@@ -89,7 +87,7 @@ public class ResourceKey implements Comparable<ResourceKey>
 
    public static Portal.PortalKey extractPortalKeyFrom(String resourceKey)
    {
-      ParameterValidation.throwIllegalArgExceptionIfNullOrEmpty(resourceKey, "resource key", null);
+      if (resourceKey == null || resourceKey.trim().length() == 0) throw new IllegalArgumentException("childId cannot be null or empty");
       return Portal.PortalKey.parse(resourceKey.substring(resourceKey.indexOf(SEPARATOR)));
    }
 

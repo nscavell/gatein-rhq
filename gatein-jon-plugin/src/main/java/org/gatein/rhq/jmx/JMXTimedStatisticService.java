@@ -23,7 +23,6 @@
 
 package org.gatein.rhq.jmx;
 
-import org.gatein.common.util.ParameterValidation;
 import org.gatein.rhq.spi.stats.TimedStatisticService;
 import org.mc4j.ems.connection.bean.EmsBean;
 import org.mc4j.ems.connection.bean.operation.EmsOperation;
@@ -41,8 +40,8 @@ public class JMXTimedStatisticService implements TimedStatisticService
 
    public JMXTimedStatisticService(EmsBean statisticJMXBean, String serviceName)
    {
-      ParameterValidation.throwIllegalArgExceptionIfNull(statisticJMXBean, "JMX Statistic proxy");
-      ParameterValidation.throwIllegalArgExceptionIfNullOrEmpty(serviceName, "Service name", null);
+      if (statisticJMXBean == null) throw new IllegalArgumentException("statisticJMXBean cannot be null");
+      if (serviceName == null || serviceName.trim().length() == 0) throw new IllegalArgumentException("serviceName cannot be null or empty");
 
       getMinTime = statisticJMXBean.getOperation("getMinTime", (Class[]) null);
       getMaxTime = statisticJMXBean.getOperation("getMaxTime", (Class[]) null);
