@@ -36,7 +36,7 @@ import org.rhq.plugins.jmx.JMXComponent;
 public class PortletDiscovery extends GateInJMXResourceDiscovery
 {
    @Override
-   protected DiscoveredResourceDetails createResourceDetail(ResourceDiscoveryContext<JMXComponent> context, String portalContainerName, String name)
+   protected DiscoveredResourceDetails createResourceDetail(ResourceDiscoveryContext<JMXComponent<?>> context, String portalContainerName, String name)
    {
       String parentKey = context.getParentResourceContext().getResourceKey();
       ResourceKey parent = ResourceKey.parse(parentKey);

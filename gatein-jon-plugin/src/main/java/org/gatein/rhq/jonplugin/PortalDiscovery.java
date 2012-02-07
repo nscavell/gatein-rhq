@@ -36,7 +36,7 @@ public class PortalDiscovery extends GateInJMXResourceDiscovery
 {
    private static final Logger log = LoggerFactory.getLogger(PortalDiscovery.class);
 
-   protected DiscoveredResourceDetails createResourceDetail(ResourceDiscoveryContext<JMXComponent> context, String portalContainerName, String name)
+   protected DiscoveredResourceDetails createResourceDetail(ResourceDiscoveryContext<JMXComponent<?>> context, String portalContainerName, String name)
    {
       Portal.PortalKey key = Portal.PortalKey.create(portalContainerName, name);
 

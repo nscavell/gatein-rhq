@@ -46,7 +46,7 @@ import java.util.Set;
  * @author <a href="mailto:chris.laprun@jboss.com">Chris Laprun</a>
  * @version $Revision$
  */
-public abstract class GateInJMXResourceComponent<T extends ManagedResource, S extends TimedStatisticService> extends MBeanResourceComponent<JMXComponent> implements GateInJMXResource, MeasurementFacet, OperationFacet
+public abstract class GateInJMXResourceComponent<T extends ManagedResource, S extends TimedStatisticService> extends MBeanResourceComponent<JMXComponent<?>> implements GateInJMXResource, MeasurementFacet, OperationFacet
 {
    protected AvailabilityType availability = AvailabilityType.UP;
    protected T managedResource;
@@ -58,7 +58,7 @@ public abstract class GateInJMXResourceComponent<T extends ManagedResource, S ex
    }
 
    @Override
-   public void start(ResourceContext<JMXComponent> context)
+   public void start(ResourceContext<JMXComponent<?>> context)
    {
       super.start(context);
 

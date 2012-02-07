@@ -37,10 +37,10 @@ import java.util.Set;
  * @author <a href="mailto:chris.laprun@jboss.com">Chris Laprun</a>
  * @version $Revision$
  */
-public abstract class GateInJMXResourceDiscovery extends MBeanResourceDiscoveryComponent<JMXComponent> implements GateInJMXResource
+public abstract class GateInJMXResourceDiscovery extends MBeanResourceDiscoveryComponent<JMXComponent<?>> implements GateInJMXResource
 {
    @Override
-   public Set<DiscoveredResourceDetails> discoverResources(ResourceDiscoveryContext<JMXComponent> context)
+   public Set<DiscoveredResourceDetails> discoverResources(ResourceDiscoveryContext<JMXComponent<?>> context)
    {
       Set<DiscoveredResourceDetails> resources = super.discoverResources(context);
 
@@ -66,5 +66,5 @@ public abstract class GateInJMXResourceDiscovery extends MBeanResourceDiscoveryC
       return resources;
    }
 
-   protected abstract DiscoveredResourceDetails createResourceDetail(ResourceDiscoveryContext<JMXComponent> context, String portalContainerName, String name);
+   protected abstract DiscoveredResourceDetails createResourceDetail(ResourceDiscoveryContext<JMXComponent<?>> context, String portalContainerName, String name);
 }
