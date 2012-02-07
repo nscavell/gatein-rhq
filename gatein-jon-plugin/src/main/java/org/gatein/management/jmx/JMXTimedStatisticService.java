@@ -44,9 +44,9 @@ public class JMXTimedStatisticService implements TimedStatisticService
       ParameterValidation.throwIllegalArgExceptionIfNull(statisticJMXBean, "JMX Statistic proxy");
       ParameterValidation.throwIllegalArgExceptionIfNullOrEmpty(serviceName, "Service name", null);
 
-      getMinTime = statisticJMXBean.getOperation("getMinTime");
-      getMaxTime = statisticJMXBean.getOperation("getMaxTime");
-      getAverageTime = statisticJMXBean.getOperation("getAverageTime");
+      getMinTime = statisticJMXBean.getOperation("getMinTime", (Class[]) null);
+      getMaxTime = statisticJMXBean.getOperation("getMaxTime", (Class[]) null);
+      getAverageTime = statisticJMXBean.getOperation("getAverageTime", (Class[]) null);
 
       this.serviceName = serviceName;
    }

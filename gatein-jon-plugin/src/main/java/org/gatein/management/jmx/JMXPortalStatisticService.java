@@ -38,7 +38,7 @@ public class JMXPortalStatisticService extends JMXTimedStatisticService implemen
    public JMXPortalStatisticService(EmsBean statisticJMXBean, String portalName)
    {
       super(statisticJMXBean, portalName);
-      getThroughput = statisticJMXBean.getOperation("getThroughput");
+      getThroughput = statisticJMXBean.getOperation("getThroughput", (Class[]) null);
    }
 
    @Override
