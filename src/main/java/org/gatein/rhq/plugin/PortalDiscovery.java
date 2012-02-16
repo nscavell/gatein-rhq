@@ -28,21 +28,14 @@ import org.gatein.rhq.jmx.GateInJMXResourceDiscovery;
 import org.rhq.core.pluginapi.inventory.DiscoveredResourceDetails;
 import org.rhq.core.pluginapi.inventory.ResourceDiscoveryContext;
 import org.rhq.plugins.jmx.JMXComponent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 public class PortalDiscovery extends GateInJMXResourceDiscovery
 {
-   private static final Logger log = LoggerFactory.getLogger(PortalDiscovery.class);
-
    protected DiscoveredResourceDetails createResourceDetail(ResourceDiscoveryContext<JMXComponent<?>> context, String portalContainerName, String name)
    {
       Portal.PortalKey key = Portal.PortalKey.create(portalContainerName, name);
-
       String portalDescription = key.toString();
-
-      log.info("Discovered new " + portalDescription);
 
       return new DiscoveredResourceDetails(context.getResourceType(), Portal.PortalKey.compose(key),
          key.getPortalName(), "version", "Monitoring of GateIn resources for " + portalDescription, null, null);
