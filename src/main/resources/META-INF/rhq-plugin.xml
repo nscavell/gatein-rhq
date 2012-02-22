@@ -30,7 +30,10 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="urn:xmlns:rhq-plugin"
         xmlns:c="urn:xmlns:rhq-configuration"
-        xsi:schemaLocation="urn:xmlns:rhq-plugin http://svn.rhq-project.org/repos/rhq/tags/RHQ_1_3_1_GA/modules/core/client-api/src/main/resources/rhq-plugin.xsd">
+        xsi:schemaLocation="
+        urn:xmlns:rhq-plugin http://git.fedorahosted.org/git?p=rhq/rhq.git;a=blob_plain;f=modules/core/client-api/src/main/resources/rhq-plugin.xsd;hb=HEAD
+        urn:xmlns:rhq-configuration http://git.fedorahosted.org/git?p=rhq/rhq.git;a=blob_plain;f=modules/core/client-api/src/main/resources/rhq-configuration.xsd;hb=HEAD
+        ">
 
    <depends plugin="JMX"/>
    <depends plugin="JBossAS5" useClasses="true"/>
