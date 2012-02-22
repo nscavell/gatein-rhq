@@ -38,12 +38,13 @@ public class JMXPortletStatisticService extends JMXTimedStatisticService impleme
    public JMXPortletStatisticService(EmsBean statisticJMXBean, String portletId)
    {
       super(statisticJMXBean, portletId);
-      getExecutionCount = statisticJMXBean.getOperation("getExecutionCount", (Class[]) null);
+      getExecutionCount = statisticJMXBean.getOperation("getExecutionCount", String.class);
    }
 
    @Override
    public long getExecutionCount()
    {
+      System.out.println("Executing execution count !!! Whoooo Hoooo");
       return (Long)getExecutionCount.invoke(getServiceName());
    }
 }

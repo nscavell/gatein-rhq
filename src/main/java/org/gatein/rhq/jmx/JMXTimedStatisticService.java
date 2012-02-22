@@ -43,9 +43,9 @@ public class JMXTimedStatisticService implements TimedStatisticService
       if (statisticJMXBean == null) throw new IllegalArgumentException("statisticJMXBean cannot be null");
       if (serviceName == null || serviceName.trim().length() == 0) throw new IllegalArgumentException("serviceName cannot be null or empty");
 
-      getMinTime = statisticJMXBean.getOperation("getMinTime", (Class[]) null);
-      getMaxTime = statisticJMXBean.getOperation("getMaxTime", (Class[]) null);
-      getAverageTime = statisticJMXBean.getOperation("getAverageTime", (Class[]) null);
+      getMinTime = statisticJMXBean.getOperation("getMinTime", String.class);
+      getMaxTime = statisticJMXBean.getOperation("getMaxTime", String.class);
+      getAverageTime = statisticJMXBean.getOperation("getAverageTime", String.class);
 
       this.serviceName = serviceName;
    }
