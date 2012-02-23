@@ -44,7 +44,6 @@ public class JMXPortletStatisticService extends JMXTimedStatisticService impleme
    @Override
    public long getExecutionCount()
    {
-      System.out.println("Executing execution count !!! Whoooo Hoooo");
       return (Long)getExecutionCount.invoke(getServiceName());
    }
 }
