@@ -41,6 +41,9 @@ import org.rhq.plugins.jmx.MBeanResourceComponent;
 import java.util.Set;
 
 /**
+ * This class will lookup measurement values by invoking the metric as an operation on the JMX bean using the
+ * attribute obtained from {@link MBeanAttributeDiscoveryComponent} as the parameter to that operation.
+ *
  * @author <a href="mailto:nscavell@redhat.com">Nick Scavelli</a>
  */
 public abstract class MBeanAttributeResourceComponent implements MeasurementFacet, JMXComponent<MBeanResourceComponent<?>>
@@ -87,9 +90,11 @@ public abstract class MBeanAttributeResourceComponent implements MeasurementFace
       parent = context.getParentResourceComponent();
       bean = parent.getEmsBean();
       attributeValue = parseAttributeValue(context.getResourceKey());
+      // An interesting way to override the parent's objectName
       String objectName = context.getPluginConfiguration().getSimpleValue(MBeanResourceComponent.OBJECT_NAME_PROP, null);
       if (objectName != null)
       {
+         // Resolve any template variables or w/e you want to call them
          objectName = TemplateResolver.resolve(objectName, parent.getResourceContext().getPluginConfiguration());
          bean = getEmsConnection().getBean(objectName);
       }
@@ -115,7 +120,15 @@ public abstract class MBeanAttributeResourceComponent implements MeasurementFace
    {
       return parent.getEmsConnection();
    }
-   
+
+   /**
+    * This method allows the implementing class to resolve/parse the attributeValue back from the resourceKey which was
+    * created during the {@link MBeanAttributeDiscoveryComponent#createResourceDetails(org.rhq.core.pluginapi.inventory.ResourceDiscoveryContext, String)}
+    * method.
+    *
+    * @param resourceKey The resourceKey of the discovered resource.
+    * @return the attribute value
+    */
    protected abstract String parseAttributeValue(String resourceKey);
    
    

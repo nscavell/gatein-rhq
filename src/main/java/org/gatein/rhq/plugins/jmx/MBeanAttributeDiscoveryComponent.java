@@ -37,6 +37,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * This class will discover resource based on an 'listAttributeName' attribute of a JMX bean which returns a list
+ * of values (String[]) to create resources from.
+ *
  * @author <a href="mailto:nscavell@redhat.com">Nick Scavelli</a>
  */
 public abstract class MBeanAttributeDiscoveryComponent implements ResourceDiscoveryComponent<MBeanResourceComponent<?>>
@@ -95,5 +98,13 @@ public abstract class MBeanAttributeDiscoveryComponent implements ResourceDiscov
       }
    }
 
+   /**
+    * Create DiscoveredResourceDetails based on values found during invocation of the 'listAttributeName' attribute of the
+    * JMX bean.
+    *
+    * @param context the {@link ResourceDiscoveryContext} of the discovery request
+    * @param attributeValue a value
+    * @return
+    */
    protected abstract DiscoveredResourceDetails createResourceDetails(ResourceDiscoveryContext<MBeanResourceComponent<?>> context, String attributeValue);
 }

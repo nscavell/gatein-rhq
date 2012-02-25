@@ -38,8 +38,7 @@
    <depends plugin="JMX"/>
    <depends plugin="JBossAS5" useClasses="true"/>
 
-   <service name="Portal" discovery="PortalDiscovery"
-            class="org.rhq.plugins.jmx.MBeanResourceComponent" description="Monitors Portals">
+   <service name="Portal" discovery="PortalDiscovery" class="org.rhq.plugins.jmx.MBeanResourceComponent" description="Monitors Portals">
 
       <runs-inside>
          <parent-resource-type name="JBossAS Server" plugin="JBossAS5"/>
@@ -75,8 +74,7 @@
 
       </service>
 
-      <service name="Portlet" discovery="StatisticResourceDiscovery"
-               class="StatisticResourceComponent" description="Portlet Statistics">
+      <service name="Portlet" discovery="StatisticResourceDiscovery" class="StatisticResourceComponent" description="Portlet Statistics">
          <plugin-configuration>
             <!-- This will replace the mbean we retrieved from the parent service -->
             <c:simple-property name="objectName" readOnly="true" default='exo:portal=%container%,service=statistic,type=application,view=portal'/>
