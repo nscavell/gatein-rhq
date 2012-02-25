@@ -58,7 +58,7 @@
             <c:simple-property name="listAttributeName" readOnly="true" default='PortalList'/>
          </plugin-configuration>
 
-         <metric property="minTime" displayName="The mininum execution time of a specified portal in seconds"
+         <metric property="minTime" displayName="The minimum execution time of a specified portal in seconds"
                  units="seconds" displayType="summary" defaultOn="true" measurementType="dynamic"/>
 
          <metric property="throughput" displayName="The number of request per second of a specified portal" units="none"
@@ -83,16 +83,16 @@
             <c:simple-property name="listAttributeName" readOnly="true" default='ApplicationList'/>
          </plugin-configuration>
 
-         <metric property="minTime" displayName="The mininum execution time of a specified portal in seconds"
+         <metric property="minTime" displayName="The minimum execution time of a specified portlet in seconds"
                  units="seconds" displayType="summary" defaultOn="true" measurementType="dynamic"/>
 
-         <metric property="averageTime" displayName="The average execution time of a specified portal in seconds"
+         <metric property="averageTime" displayName="The average execution time of a specified portlet in seconds"
                  units="seconds" displayType="summary" defaultOn="true" measurementType="dynamic"/>
 
-         <metric property="executionCount" displayName="The execution count of a specified portal" units="none"
+         <metric property="executionCount" displayName="The execution count of a specified portlet" units="none"
                  displayType="summary" defaultOn="true" measurementType="dynamic"/>
 
-         <metric property="maxTime" displayName="The maximum execution time of a specified portal in seconds"
+         <metric property="maxTime" displayName="The maximum execution time of a specified portlet in seconds"
                  units="seconds" displayType="summary" defaultOn="true" measurementType="dynamic"/>
 
       </service>
