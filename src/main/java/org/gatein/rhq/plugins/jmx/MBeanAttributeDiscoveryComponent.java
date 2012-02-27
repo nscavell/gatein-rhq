@@ -51,10 +51,12 @@ public abstract class MBeanAttributeDiscoveryComponent implements ResourceDiscov
    {
       boolean trace = log.isTraceEnabled();
 
+      // Make sure listAttributeName is present in configuration.
       Configuration config = context.getDefaultPluginConfiguration();
       String listAttributeName = config.getSimpleValue("listAttributeName", null);
       if (listAttributeName == null) throw new InvalidPluginConfigurationException("listAttributeName is a required configuration property for this plugin.");
 
+      // Get the JMX bean from the parent, or if an objectName is configured, use that instead.
       EmsBean bean = context.getParentResourceComponent().getEmsBean();
       String objectName = config.getSimpleValue(MBeanResourceComponent.OBJECT_NAME_PROP, null);
       if (objectName != null)
@@ -63,15 +65,14 @@ public abstract class MBeanAttributeDiscoveryComponent implements ResourceDiscov
          bean = context.getParentResourceComponent().getEmsConnection().getBean(objectName);
       }
       if (bean == null) throw new Exception("JMX bean not found.");
-      
+      if (trace) log.trace("Using JMX bean " + bean.getBeanName() + " for this discovery component");
+
+      // Get attribute that returns a list of values ot be discovered.
       EmsAttribute attribute = bean.getAttribute(listAttributeName);
       if (attribute == null) throw new Exception("Unknown attribute '" + listAttributeName + "' for JMX bean " + bean.getBeanName());
+      if (trace) log.trace("Looking up list of values for attribute " + attribute.getName());
 
-      if (trace)
-      {
-         log.trace("Looking up list of values for attribute " + attribute.getName());
-      }
-
+      // Discover
       Object object = attribute.getValue();
       if (object instanceof String[])
       {

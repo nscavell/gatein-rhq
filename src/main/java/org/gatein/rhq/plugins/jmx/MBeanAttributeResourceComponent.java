@@ -58,6 +58,7 @@ public abstract class MBeanAttributeResourceComponent implements MeasurementFace
    @Override
    public void getValues(MeasurementReport report, Set<MeasurementScheduleRequest> metrics) throws Exception
    {
+      boolean trace = log.isTraceEnabled();
       for (MeasurementScheduleRequest metric : metrics)
       {
          if (metric.getDataType() == DataType.MEASUREMENT)
@@ -65,10 +66,13 @@ public abstract class MBeanAttributeResourceComponent implements MeasurementFace
             EmsOperation operation = getOperation(bean, metric.getName());
             if (operation != null)
             {
+               if (trace) log.trace("Gathering metric data by invoking operation " + operation.getName() + " with parameter " + attributeValue + " on JMX bean " + bean.getBeanName());
                Object value = operation.invoke(attributeValue);
                if (value instanceof Number)
                {
-                  report.addData(new MeasurementDataNumeric(metric, ((Number) value).doubleValue()));
+                  Double doubleValue = ((Number) value).doubleValue();
+                  if (trace) log.trace("Found numeric value " + doubleValue + " for metric data for " + metric.getName());
+                  report.addData(new MeasurementDataNumeric(metric, doubleValue));
                }
                else 
                {
